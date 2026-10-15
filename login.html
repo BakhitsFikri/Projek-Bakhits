@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fasilita - Masuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a1810;
+    --card: #12221a;
+    --field: #172a20;
+    --icon-box: #1f3328;
+    --lime: #84cc16;
+    --lime-bright: #8fd414;
+    --text: #e8efe9;
+    --muted: #8a9a90;
+    --label: #d5ded8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 503px;
+    background: var(--card);
+    border-radius: 10px;
+    padding: 32px 14px 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Header */
+  .brand { text-align: center; }
+
+  .logo {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 8px;
+    background: var(--icon-box);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo svg { width: 15px; height: 15px; }
+
+  .brand h1 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #f1f5f2;
+    letter-spacing: 0.1px;
+    line-height: 1.2;
+  }
+
+  .brand p {
+    margin-top: 6px;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 0.2px;
+  }
+
+  /* Form */
+  form { margin-top: 12px; }
+
+  label.field-label {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: var(--label);
+    margin-bottom: 4px;
+  }
+
+  .field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 26px;
+    background: var(--field);
+    border-radius: 4px;
+    padding: 0 10px 0 8px;
+    margin-bottom: 8px;
+  }
+  .field + label.field-label { margin-top: 3px; }
+
+  .field .lead {
+    width: 11px;
+    height: 11px;
+    flex: none;
+    margin-right: 7px;
+    color: #9fb0a5;
+  }
+
+  .field input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #cfd9d2;
+    font-family: inherit;
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
+  .field input::placeholder { color: #cfd9d2; opacity: 1; }
+  .field input[type="password"],
+  .field input.pw-visible { letter-spacing: 1.2px; }
+
+  .field:focus-within { box-shadow: 0 0 0 1px rgba(132, 204, 22, 0.55); }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--lime-bright);
+    box-shadow: 0 0 4px rgba(143, 212, 20, 0.8);
+    flex: none;
+  }
+
+  .toggle {
+    flex: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: #9fb0a5;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  .toggle svg { width: 12px; height: 12px; }
+  .toggle:focus-visible { outline: 1px solid var(--lime); outline-offset: 2px; }
+
+  /* Options row */
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 7px;
+  }
+
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 8px;
+    color: #c5d1c9;
+    cursor: pointer;
+  }
+  .remember input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--lime);
+    border-radius: 2px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .remember input:not(:checked) { background: transparent; border: 1px solid #4d6556; }
+  .remember input:checked::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 2px;
+    height: 5px;
+    border: solid #10200f;
+    border-width: 0 1.2px 1.2px 0;
+    transform: rotate(45deg);
+  }
+  .remember input:focus-visible { outline: 1px solid #fff; outline-offset: 2px; }
+
+  .forgot {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--lime-bright);
+    text-decoration: none;
+  }
+  .forgot:hover { text-decoration: underline; }
+
+  /* Button */
+  .btn {
+    width: 100%;
+    height: 28px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--lime-bright);
+    color: #243a0a;
+    font-family: inherit;
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:active { filter: brightness(0.95); }
+  .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  .footer {
+    margin-top: 14px;
+    font-size: 8px;
+    color: #6f7f75;
+    letter-spacing: 0.1px;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="card">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="112 71 350 390" fill="#9fea3c">
+          <path d="M301 245
+                   A151 164 0 0 1 452 81
+                   L452 168
+                   A75 77 0 0 0 377 245
+                   L377 273
+                   L452 273
+                   L452 352
+                   L377 352
+                   L377 451
+                   L301 451
+                   L301 352
+                   A179 151 0 0 1 122 201
+                   L208 201
+                   A93 72 0 0 0 301 273
+                   Z"/>
+        </svg>
+      </div>
+      <h1>Fasilita</h1>
+      <p>Fasilitas Terpadu</p>
+    </div>
+
+    <form id="loginForm" autocomplete="on">
+      <label class="field-label" for="login">Identitas Pengguna</label>
+      <div class="field">
+        <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="15" rx="2"/>
+          <path d="M8 5V3h8v2"/>
+          <circle cx="9" cy="12" r="2"/>
+          <path d="M6 17c.5-1.5 1.7-2 3-2s2.5.5 3 2"/>
+          <path d="M15 11h3M15 14h3"/>
+        </svg>
+        <input type="text" id="login" name="login" placeholder="Login" autocomplete="username" required>
+        <span class="dot" aria-hidden="true"></span>
+      </div>
+
+      <label class="field-label" for="password">Password Pengguna</label>
+      <div class="field">
+        <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="11" width="16" height="10" rx="2"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+        <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" required>
+        <button type="button" class="toggle" id="togglePw" aria-label="Tampilkan password">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="options">
+        <label class="remember">
+          <input type="checkbox" name="remember" checked>
+          Ingat saya
+        </label>
+        <a href="#" class="forgot">Lupa Kata Sandi?</a>
+      </div>
+
+      <button type="submit" class="btn">MASUK</button>
+    </form>
+  </main>
+
+  <p class="footer">Akses Sistem Fasilita V 1.0</p>
+
+<script>
+  const pw = document.getElementById('password');
+  const toggle = document.getElementById('togglePw');
+
+  toggle.addEventListener('click', () => {
+    const show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    toggle.setAttribute('aria-label', show ? 'Sembunyikan password' : 'Tampilkan password');
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // TODO: sambungkan ke proses autentikasi Anda di sini
+  });
+</script>
+</body>
+</html>
