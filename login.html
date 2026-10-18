@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Masuk - Pengelolaan Barang</title>
@@ -6,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0f172a;
-    --muted: #64748b;
-    --field: #eef2fe;
-    --plum: #4a2c3a;
-    --btn: #200610;
-    --strip: #f7f8fd;
+    --ink: #10231a;
+    --muted: #5b6b62;
+    --field: #eaf6ef;
+    --plum: #166534;
+    --btn: #14532d;
+    --strip: #f3faf6;
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html, body { min-height: 100%; }
- 
+
   body {
     min-height: 100vh;
     font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -28,11 +31,11 @@
     justify-content: center;
     padding: 32px 16px;
     background:
-      radial-gradient(60% 50% at 0% 20%, #f6e8f4 0%, rgba(246, 232, 244, 0) 70%),
-      radial-gradient(50% 40% at 50% 0%, #fbf8fe 0%, rgba(251, 248, 254, 0) 70%),
-      linear-gradient(135deg, #f5eef9 0%, #f1ebf9 50%, #ece6f7 100%);
+      radial-gradient(60% 50% at 0% 20%, #dff3e7 0%, rgba(223, 243, 231, 0) 70%),
+      radial-gradient(50% 40% at 50% 0%, #f6fcf8 0%, rgba(246, 252, 248, 0) 70%),
+      linear-gradient(135deg, #f2faf5 0%, #ebf7f0 50%, #e3f3ea 100%);
   }
- 
+
   .card {
     width: 100%;
     max-width: 384px;
@@ -40,12 +43,12 @@
     border-radius: 18px;
     overflow: hidden;
     box-shadow:
-      0 24px 40px -12px rgba(30, 20, 50, 0.22),
-      0 4px 10px rgba(30, 20, 50, 0.06);
+      0 24px 40px -12px rgba(16, 35, 26, 0.20),
+      0 4px 10px rgba(16, 35, 26, 0.06);
   }
- 
+
   .card-body { padding: 32px 38px 28px; }
- 
+
   .head { text-align: center; }
   .head h1 {
     font-size: 22px;
@@ -59,16 +62,16 @@
     color: var(--muted);
     font-weight: 400;
   }
- 
+
   form { margin-top: 28px; }
- 
+
   .label {
     display: block;
     font-size: 12.5px;
     font-weight: 700;
     margin-bottom: 8px;
   }
- 
+
   .field {
     display: flex;
     align-items: center;
@@ -80,15 +83,15 @@
     margin-bottom: 20px;
     transition: box-shadow 0.15s ease;
   }
-  .field:focus-within { box-shadow: 0 0 0 2px rgba(74, 44, 58, 0.35); }
- 
+  .field:focus-within { box-shadow: 0 0 0 2px rgba(22, 101, 52, 0.35); }
+
   .field .icon {
     width: 15px;
     height: 15px;
     flex: none;
     color: #6b7280;
   }
- 
+
   .field input {
     flex: 1;
     min-width: 0;
@@ -102,7 +105,7 @@
   .field input::placeholder { color: #475569; opacity: 0.85; }
   .field input[type="password"] { letter-spacing: 2px; }
   .field input[type="password"]::placeholder { letter-spacing: normal; }
- 
+
   .eye {
     flex: none;
     border: 0;
@@ -114,14 +117,14 @@
   }
   .eye svg { width: 17px; height: 17px; }
   .eye:focus-visible { outline: 2px solid var(--plum); outline-offset: 2px; border-radius: 4px; }
- 
+
   .row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: -2px 0 22px;
   }
- 
+
   .remember {
     display: flex;
     align-items: center;
@@ -143,7 +146,7 @@
   }
   .remember input:not(:checked) {
     background: #fff;
-    border: 1.5px solid #b9a8b1;
+    border: 1.5px solid #a3bba9;
   }
   .remember input:checked::after {
     content: "";
@@ -157,7 +160,7 @@
     transform: rotate(45deg);
   }
   .remember input:focus-visible { outline: 2px solid var(--plum); outline-offset: 2px; }
- 
+
   .forgot {
     font-size: 12px;
     font-weight: 700;
@@ -165,7 +168,7 @@
     text-decoration: none;
   }
   .forgot:hover { text-decoration: underline; }
- 
+
   .btn {
     width: 100%;
     height: 42px;
@@ -181,22 +184,22 @@
     justify-content: center;
     gap: 8px;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(32, 6, 16, 0.28);
+    box-shadow: 0 6px 14px rgba(20, 83, 45, 0.28);
     transition: transform 0.12s ease, filter 0.15s ease;
   }
-  .btn:hover { filter: brightness(1.25); }
+  .btn:hover { filter: brightness(1.15); }
   .btn:active { transform: translateY(1px); }
   .btn:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
   .btn svg { width: 16px; height: 16px; }
- 
+
   .strip { height: 44px; background: var(--strip); }
- 
+
   .version {
     margin-top: 22px;
     font-size: 11px;
     color: #6b7280;
   }
- 
+
   .error {
     display: none;
     margin: -8px 0 16px;
@@ -204,31 +207,31 @@
     color: #b42318;
   }
   .error.show { display: block; }
- 
+
   @media (max-width: 420px) {
     .card-body { padding: 28px 24px 24px; }
   }
 </style>
 </head>
 <body>
- 
+
   <main class="card">
     <div class="card-body">
       <header class="head">
         <h1>Selamat Datang di</h1>
         <p>Pengelolaan Barang</p>
       </header>
- 
+
       <form id="loginForm" novalidate>
-        <label class="label" for="username">Username atau Email</label>
+        <label class="label" for="username">Username</label>
         <div class="field">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="8" r="3.5"/>
             <path d="M4.5 20c.6-3.6 3.6-5.5 7.5-5.5s6.9 1.9 7.5 5.5"/>
           </svg>
-          <input type="text" id="username" name="username" placeholder="admin@fasilita.id" autocomplete="username" required>
+          <input type="text" id="username" name="username" placeholder="Masukkan username" autocomplete="username" required>
         </div>
- 
+
         <label class="label" for="password">Kata Sandi</label>
         <div class="field">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -244,9 +247,9 @@
             </svg>
           </button>
         </div>
- 
-        <p class="error" id="errorMsg" role="alert">Username/email dan kata sandi wajib diisi.</p>
- 
+
+        <p class="error" id="errorMsg" role="alert">Username dan kata sandi wajib diisi.</p>
+
         <div class="row">
           <label class="remember">
             <input type="checkbox" name="remember" checked>
@@ -254,7 +257,7 @@
           </label>
           <a href="#" class="forgot">Lupa kata sandi?</a>
         </div>
- 
+
         <button type="submit" class="btn">
           Masuk
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -265,21 +268,21 @@
     </div>
     <div class="strip"></div>
   </main>
- 
+
   <p class="version">Versi 1.0</p>
- 
+
 <script>
   const pw = document.getElementById('password');
   const toggle = document.getElementById('togglePw');
   const form = document.getElementById('loginForm');
   const errorMsg = document.getElementById('errorMsg');
- 
+
   toggle.addEventListener('click', () => {
     const show = pw.type === 'password';
     pw.type = show ? 'text' : 'password';
     toggle.setAttribute('aria-label', show ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
   });
- 
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const user = document.getElementById('username').value.trim();
@@ -288,4 +291,10 @@
       return;
     }
     errorMsg.classList.remove('show');
+    // DEMO: belum ada pengecekan database. Sambungkan ke backend nanti.
+    sessionStorage.setItem('fasilita_user', user);
+    window.location.href = 'dashboard.html';
   });
+</script>
+</body>
+</html>
