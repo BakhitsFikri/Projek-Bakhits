@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #17142a;
-    --muted: #5f5b70;
-    --line: #ebe8f0;
-    --lav: #e6dafc;
-    --lav-soft: #f1eafd;
-    --lav-ink: #4b2f8a;
-    --rose: #d9a3ab;
-    --rose-ink: #5e2a35;
-    --tile: #fbeffc;
-    --green-bg: #c9f0dc;
-    --green-ink: #0f6b44;
+    --ink: #10231a;
+    --muted: #5b6b62;
+    --line: #e3ebe6;
+    --lav: #d9f2e3;
+    --lav-soft: #eef9f2;
+    --lav-ink: #14532d;
+    --rose-ink: #1b4d32;
+    --rose: #a8cdb5;
+    --tile: #eef9f2;
+    --green-bg: #bfe9cf;
+    --green-ink: #14532d;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +35,7 @@
   a { color: inherit; text-decoration: none; }
   svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+  /* ---------- Header ---------- */
   .header {
     position: sticky;
     top: 0;
@@ -95,7 +96,7 @@
     box-shadow: 0 1px 2px rgba(23, 20, 42, 0.05);
     transition: background 0.15s ease;
   }
-  .btn-out:hover { background: #faf8fd; }
+  .btn-out:hover { background: #f4faf6; }
   .btn-out svg { width: 15px; height: 15px; }
 
   /* ---------- Layout ---------- */
@@ -117,10 +118,10 @@
     border-radius: 12px;
     font-size: 14px;
     font-weight: 500;
-    color: #2b2740;
+    color: #1f3a2c;
     transition: background 0.15s ease;
   }
-  .sidebar a:hover { background: #f6f2fd; }
+  .sidebar a:hover { background: #f1f8f4; }
   .sidebar a.active { background: var(--lav); color: var(--lav-ink); font-weight: 600; }
 
   .overlay { display: none; position: fixed; inset: 0; background: rgba(20, 14, 32, 0.4); z-index: 25; }
@@ -131,11 +132,12 @@
     padding: 28px 36px 48px;
     position: relative;
     background:
-      radial-gradient(260px 200px at 96% 0%, rgba(214, 190, 250, 0.35), rgba(214, 190, 250, 0) 70%),
-      radial-gradient(260px 240px at 0% 55%, rgba(236, 170, 170, 0.22), rgba(236, 170, 170, 0) 70%);
+      radial-gradient(260px 200px at 96% 0%, rgba(167, 222, 190, 0.35), rgba(167, 222, 190, 0) 70%),
+      radial-gradient(260px 240px at 0% 55%, rgba(200, 230, 160, 0.25), rgba(200, 230, 160, 0) 70%);
   }
   .wrap { max-width: 980px; margin: 0 auto; }
 
+  /* ---------- Greeting ---------- */
   .hello { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .hello h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.8px; }
   .hello .name {
@@ -145,11 +147,12 @@
     padding: 0 14px;
     border-radius: 12px;
     background: var(--lav-soft);
-    color: #3b2a72;
-    border: 1px solid #e3d8f8;
+    color: #14532d;
+    border: 1px solid #cde7d6;
   }
   .sub { margin-top: 10px; color: var(--muted); font-size: 14.5px; }
 
+  /* ---------- Stat cards ---------- */
   .stats {
     margin-top: 22px;
     display: grid;
@@ -161,14 +164,14 @@
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 18px 18px 16px;
-    box-shadow: 0 6px 18px rgba(60, 40, 110, 0.07);
+    box-shadow: 0 6px 18px rgba(16, 60, 35, 0.07);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 120px;
   }
   .stat .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; }
-  .stat .label { font-size: 13.5px; font-weight: 500; color: #3a3650; }
+  .stat .label { font-size: 13.5px; font-weight: 500; color: #2a4638; }
   .pill {
     display: inline-flex;
     align-items: center;
@@ -180,12 +183,12 @@
   }
   .pill svg { width: 13px; height: 13px; }
   .pill.green { background: var(--green-bg); color: var(--green-ink); }
-  .pill.lav { background: #eadff9; color: #4b2f8a; }
+  .pill.lav { background: #d9f2e3; color: #14532d; }
   .ico {
     width: 28px; height: 28px;
     border-radius: 50%;
     background: var(--lav);
-    color: #4b3a78;
+    color: #14532d;
     display: grid;
     place-items: center;
   }
@@ -197,18 +200,19 @@
   .stat .num.big { font-size: 34px; }
   .stat .cap.left { text-align: left; max-width: 70px; line-height: 1.25; margin-left: 4px; }
 
+  /* ---------- Panels ---------- */
   .panel {
     margin-top: 22px;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 22px 20px 20px;
-    box-shadow: 0 6px 18px rgba(60, 40, 110, 0.07);
+    box-shadow: 0 6px 18px rgba(16, 60, 35, 0.07);
   }
   .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
   .panel-head h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
-  .panel-head span { font-size: 12px; font-weight: 500; color: #3a3650; }
-  .panel-head a { font-size: 12.5px; font-weight: 600; color: #8a3b4a; }
+  .panel-head span { font-size: 12px; font-weight: 500; color: #2a4638; }
+  .panel-head a { font-size: 12.5px; font-weight: 600; color: #166534; }
   .panel-head a:hover { text-decoration: underline; }
 
   .quick {
@@ -225,7 +229,7 @@
     border-radius: 14px;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(120, 70, 150, 0.12); }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(30, 110, 60, 0.12); }
   .tile .sq {
     width: 44px; height: 44px;
     border-radius: 12px;
@@ -234,7 +238,7 @@
     flex: none;
   }
   .tile .sq svg { width: 20px; height: 20px; }
-  .sq.lav { background: #d9ccf7; color: #4b2f8a; }
+  .sq.lav { background: #cdebd9; color: #14532d; }
   .sq.rose { background: var(--rose); color: var(--rose-ink); }
   .tile b { display: block; font-size: 15px; font-weight: 700; }
   .tile small { display: block; margin-top: 1px; font-size: 12px; color: var(--muted); }
@@ -256,12 +260,13 @@
     flex: none;
   }
   .activity .dot svg { width: 16px; height: 16px; }
-  .dot.lav { background: #e3d6fb; color: #4b2f8a; }
+  .dot.lav { background: #d9f2e3; color: #14532d; }
   .dot.rose { background: var(--rose); color: var(--rose-ink); }
   .dot.green { background: var(--green-bg); color: var(--green-ink); }
   .activity p { flex: 1; font-size: 14px; font-weight: 500; }
   .activity time { font-size: 12px; color: var(--muted); white-space: nowrap; }
 
+  /* ---------- Responsive ---------- */
   @media (max-width: 1100px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
   }
@@ -289,6 +294,7 @@
 </head>
 <body>
 
+<!-- Ikon -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
@@ -310,6 +316,7 @@
   </defs>
 </svg>
 
+<!-- Header -->
 <header class="header">
   <div class="left">
     <button class="menu-btn" id="menuBtn" aria-label="Buka menu"><svg class="i"><use href="#i-menu"/></svg></button>
@@ -321,13 +328,14 @@
   <div class="right">
     <div class="who">
       <span class="av"><svg class="i"><use href="#i-user"/></svg></span>
-      <span>admin</span>
+      <span id="userChip">admin</span>
     </div>
-    <button class="btn-out" type="button"><svg class="i"><use href="#i-logout"/></svg>Keluar</button>
+    <a class="btn-out" href="login.html" id="logoutBtn"><svg class="i"><use href="#i-logout"/></svg>Keluar</a>
   </div>
 </header>
 
 <div class="shell">
+  <!-- Sidebar (hanya 6 menu master) -->
   <nav class="sidebar" id="sidebar" aria-label="Menu utama">
     <a href="#" class="active"><svg class="i"><use href="#i-grid"/></svg>Dashboard</a>
     <a href="#"><svg class="i"><use href="#i-ruler"/></svg>Satuan</a>
@@ -347,6 +355,7 @@
       </div>
       <p class="sub">Selamat datang kembali! Pantau ringkasan data master Fasilita.</p>
 
+      <!-- Kartu ringkasan -->
       <section class="stats" aria-label="Ringkasan">
         <article class="stat">
           <div class="top">
@@ -456,13 +465,29 @@
 </div>
 
 <script>
+  /* ====== DATA CONTOH ======
+     Ganti dengan data dari backend:
+       jumlah barang aktif -> SELECT COUNT(*) FROM v_barang WHERE status = 1;
+       jumlah vendor       -> SELECT COUNT(*) FROM v_vendor;
+       jumlah user         -> SELECT COUNT(*) FROM v_user;
+       margin aktif        -> SELECT persentase FROM v_margin_penjualan WHERE status = 1;
+  */
   const data = { barang: 5, vendor: 5, user: 5, margin: 10, nama: 'Admin' };
 
   document.getElementById('jmlBarang').textContent = data.barang;
   document.getElementById('jmlVendor').textContent = data.vendor;
   document.getElementById('jmlUser').textContent = data.user;
   document.getElementById('marginAktif').textContent = data.margin;
-  document.getElementById('namaUser').textContent = data.nama;
+
+  // Demo login: kalau belum "masuk", kembali ke halaman login
+  const savedUser = sessionStorage.getItem('fasilita_user');
+  if (!savedUser) {
+    window.location.replace('login.html');
+  } else {
+    document.getElementById('userChip').textContent = savedUser;
+    document.getElementById('namaUser').textContent = savedUser.charAt(0).toUpperCase() + savedUser.slice(1);
+  }
+  document.getElementById('logoutBtn').addEventListener('click', () => sessionStorage.removeItem('fasilita_user'));
 
   // Sidebar mobile
   const sidebar = document.getElementById('sidebar');
