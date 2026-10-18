@@ -9,17 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #10231a;
-    --muted: #5b6b62;
-    --line: #e3ebe6;
-    --lav: #d9f2e3;
-    --lav-soft: #eef9f2;
-    --lav-ink: #14532d;
-    --rose-ink: #1b4d32;
-    --rose: #a8cdb5;
-    --tile: #eef9f2;
-    --green-bg: #bfe9cf;
-    --green-ink: #14532d;
+    --ink: #1b2d23;
+    --muted: #53685c;
+    --line: #d8e6de;
+    --primary: #1b4332;
+    --primary-hover: #143628;
+    --green-soft: #e9f5ed;
+    --green-badge: #d8f3dc;
+    --green-ink: #1b4332;
+    --mint-bg: #eef4f0;
+    --tile-bg: #f3f8f4;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +26,7 @@
   body {
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: var(--ink);
-    background: #fff;
+    background: var(--mint-bg);
     font-size: 14px;
     line-height: 1.45;
   }
@@ -58,12 +57,12 @@
     cursor: pointer;
     color: var(--ink);
   }
-  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; color: var(--primary); }
   .brand .mark {
     width: 36px; height: 36px;
     border-radius: 11px;
-    background: var(--lav);
-    color: var(--lav-ink);
+    background: var(--green-soft);
+    color: var(--primary);
     display: grid;
     place-items: center;
   }
@@ -74,8 +73,8 @@
   .who .av {
     width: 30px; height: 30px;
     border-radius: 50%;
-    background: var(--lav);
-    color: var(--lav-ink);
+    background: var(--green-soft);
+    color: var(--primary);
     display: grid;
     place-items: center;
   }
@@ -93,10 +92,10 @@
     font-weight: 500;
     color: var(--ink);
     cursor: pointer;
-    box-shadow: 0 1px 2px rgba(23, 20, 42, 0.05);
+    box-shadow: 0 1px 2px rgba(27, 43, 35, 0.05);
     transition: background 0.15s ease;
   }
-  .btn-out:hover { background: #f4faf6; }
+  .btn-out:hover { background: var(--green-soft); }
   .btn-out svg { width: 15px; height: 15px; }
 
   /* ---------- Layout ---------- */
@@ -118,13 +117,13 @@
     border-radius: 12px;
     font-size: 14px;
     font-weight: 500;
-    color: #1f3a2c;
+    color: #2b3b32;
     transition: background 0.15s ease;
   }
-  .sidebar a:hover { background: #f1f8f4; }
-  .sidebar a.active { background: var(--lav); color: var(--lav-ink); font-weight: 600; }
+  .sidebar a:hover { background: var(--green-soft); }
+  .sidebar a.active { background: var(--primary); color: #fff; font-weight: 600; }
 
-  .overlay { display: none; position: fixed; inset: 0; background: rgba(20, 14, 32, 0.4); z-index: 25; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(20, 35, 28, 0.4); z-index: 25; }
 
   .main {
     flex: 1;
@@ -132,23 +131,23 @@
     padding: 28px 36px 48px;
     position: relative;
     background:
-      radial-gradient(260px 200px at 96% 0%, rgba(167, 222, 190, 0.35), rgba(167, 222, 190, 0) 70%),
-      radial-gradient(260px 240px at 0% 55%, rgba(200, 230, 160, 0.25), rgba(200, 230, 160, 0) 70%);
+      radial-gradient(260px 200px at 96% 0%, rgba(183, 228, 199, 0.35), rgba(183, 228, 199, 0) 70%),
+      radial-gradient(260px 240px at 0% 55%, rgba(216, 243, 220, 0.3), rgba(216, 243, 220, 0) 70%);
   }
   .wrap { max-width: 980px; margin: 0 auto; }
 
   /* ---------- Greeting ---------- */
   .hello { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .hello h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.8px; }
+  .hello h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.8px; color: var(--primary); }
   .hello .name {
     font-size: 34px;
     font-weight: 800;
     letter-spacing: -0.8px;
     padding: 0 14px;
     border-radius: 12px;
-    background: var(--lav-soft);
-    color: #14532d;
-    border: 1px solid #cde7d6;
+    background: var(--green-soft);
+    color: var(--primary);
+    border: 1px solid var(--line);
   }
   .sub { margin-top: 10px; color: var(--muted); font-size: 14.5px; }
 
@@ -164,14 +163,14 @@
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 18px 18px 16px;
-    box-shadow: 0 6px 18px rgba(16, 60, 35, 0.07);
+    box-shadow: 0 6px 18px rgba(27, 67, 50, 0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 120px;
   }
   .stat .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; }
-  .stat .label { font-size: 13.5px; font-weight: 500; color: #2a4638; }
+  .stat .label { font-size: 13.5px; font-weight: 500; color: #354f40; }
   .pill {
     display: inline-flex;
     align-items: center;
@@ -182,20 +181,20 @@
     font-weight: 600;
   }
   .pill svg { width: 13px; height: 13px; }
-  .pill.green { background: var(--green-bg); color: var(--green-ink); }
-  .pill.lav { background: #d9f2e3; color: #14532d; }
+  .pill.green { background: var(--green-badge); color: var(--green-ink); }
+  .pill.lav { background: var(--green-soft); color: var(--primary); }
   .ico {
     width: 28px; height: 28px;
     border-radius: 50%;
-    background: var(--lav);
-    color: #14532d;
+    background: var(--green-soft);
+    color: var(--primary);
     display: grid;
     place-items: center;
   }
   .ico svg { width: 15px; height: 15px; }
 
   .stat .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 14px; }
-  .stat .num { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+  .stat .num { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: var(--primary); }
   .stat .cap { font-size: 11.5px; color: var(--muted); font-weight: 500; text-align: right; }
   .stat .num.big { font-size: 34px; }
   .stat .cap.left { text-align: left; max-width: 70px; line-height: 1.25; margin-left: 4px; }
@@ -207,12 +206,12 @@
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 22px 20px 20px;
-    box-shadow: 0 6px 18px rgba(16, 60, 35, 0.07);
+    box-shadow: 0 6px 18px rgba(27, 67, 50, 0.05);
   }
   .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-  .panel-head h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
-  .panel-head span { font-size: 12px; font-weight: 500; color: #2a4638; }
-  .panel-head a { font-size: 12.5px; font-weight: 600; color: #166534; }
+  .panel-head h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; color: var(--primary); }
+  .panel-head span { font-size: 12px; font-weight: 500; color: #354f40; }
+  .panel-head a { font-size: 12.5px; font-weight: 600; color: var(--primary); }
   .panel-head a:hover { text-decoration: underline; }
 
   .quick {
@@ -225,11 +224,12 @@
     align-items: center;
     gap: 14px;
     padding: 18px;
-    background: var(--tile);
+    background: var(--tile-bg);
     border-radius: 14px;
+    border: 1px solid var(--line);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(30, 110, 60, 0.12); }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(27, 67, 50, 0.08); }
   .tile .sq {
     width: 44px; height: 44px;
     border-radius: 12px;
@@ -238,9 +238,9 @@
     flex: none;
   }
   .tile .sq svg { width: 20px; height: 20px; }
-  .sq.lav { background: #cdebd9; color: #14532d; }
-  .sq.rose { background: var(--rose); color: var(--rose-ink); }
-  .tile b { display: block; font-size: 15px; font-weight: 700; }
+  .sq.lav { background: #d8f3dc; color: var(--primary); }
+  .sq.rose { background: #b7e4c7; color: var(--primary); }
+  .tile b { display: block; font-size: 15px; font-weight: 700; color: var(--primary); }
   .tile small { display: block; margin-top: 1px; font-size: 12px; color: var(--muted); }
 
   .activity { list-style: none; }
@@ -260,9 +260,9 @@
     flex: none;
   }
   .activity .dot svg { width: 16px; height: 16px; }
-  .dot.lav { background: #d9f2e3; color: #14532d; }
-  .dot.rose { background: var(--rose); color: var(--rose-ink); }
-  .dot.green { background: var(--green-bg); color: var(--green-ink); }
+  .dot.lav { background: var(--green-soft); color: var(--primary); }
+  .dot.rose { background: #b7e4c7; color: var(--primary); }
+  .dot.green { background: var(--green-badge); color: var(--green-ink); }
   .activity p { flex: 1; font-size: 14px; font-weight: 500; }
   .activity time { font-size: 12px; color: var(--muted); white-space: nowrap; }
 
@@ -328,14 +328,14 @@
   <div class="right">
     <div class="who">
       <span class="av"><svg class="i"><use href="#i-user"/></svg></span>
-      <span id="userChip">admin</span>
+      <span>admin</span>
     </div>
-    <a class="btn-out" href="login.html" id="logoutBtn"><svg class="i"><use href="#i-logout"/></svg>Keluar</a>
+    <button class="btn-out" type="button"><svg class="i"><use href="#i-logout"/></svg>Keluar</button>
   </div>
 </header>
 
 <div class="shell">
-  <!-- Sidebar (hanya 6 menu master) -->
+  <!-- Sidebar -->
   <nav class="sidebar" id="sidebar" aria-label="Menu utama">
     <a href="#" class="active"><svg class="i"><use href="#i-grid"/></svg>Dashboard</a>
     <a href="#"><svg class="i"><use href="#i-ruler"/></svg>Satuan</a>
@@ -436,7 +436,7 @@
         </div>
       </section>
 
-      <!-- Aktivitas terkini (contoh statis, belum ada tabel log di database) -->
+      <!-- Aktivitas terkini -->
       <section class="panel">
         <div class="panel-head">
           <h2>Aktivitas Terkini</h2>
@@ -465,29 +465,13 @@
 </div>
 
 <script>
-  /* ====== DATA CONTOH ======
-     Ganti dengan data dari backend:
-       jumlah barang aktif -> SELECT COUNT(*) FROM v_barang WHERE status = 1;
-       jumlah vendor       -> SELECT COUNT(*) FROM v_vendor;
-       jumlah user         -> SELECT COUNT(*) FROM v_user;
-       margin aktif        -> SELECT persentase FROM v_margin_penjualan WHERE status = 1;
-  */
   const data = { barang: 5, vendor: 5, user: 5, margin: 10, nama: 'Admin' };
 
   document.getElementById('jmlBarang').textContent = data.barang;
   document.getElementById('jmlVendor').textContent = data.vendor;
   document.getElementById('jmlUser').textContent = data.user;
   document.getElementById('marginAktif').textContent = data.margin;
-
-  // Demo login: kalau belum "masuk", kembali ke halaman login
-  const savedUser = sessionStorage.getItem('fasilita_user');
-  if (!savedUser) {
-    window.location.replace('login.html');
-  } else {
-    document.getElementById('userChip').textContent = savedUser;
-    document.getElementById('namaUser').textContent = savedUser.charAt(0).toUpperCase() + savedUser.slice(1);
-  }
-  document.getElementById('logoutBtn').addEventListener('click', () => sessionStorage.removeItem('fasilita_user'));
+  document.getElementById('namaUser').textContent = data.nama;
 
   // Sidebar mobile
   const sidebar = document.getElementById('sidebar');
