@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard - Fasilita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #17142a;
+    --muted: #5f5b70;
+    --line: #ebe8f0;
+    --lav: #e6dafc;
+    --lav-soft: #f1eafd;
+    --lav-ink: #4b2f8a;
+    --rose: #d9a3ab;
+    --rose-ink: #5e2a35;
+    --tile: #fbeffc;
+    --green-bg: #c9f0dc;
+    --green-ink: #0f6b44;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .header .left { display: flex; align-items: center; gap: 12px; }
+  .menu-btn {
+    display: none;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 10px;
+    padding: 7px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; }
+  .brand .mark {
+    width: 36px; height: 36px;
+    border-radius: 11px;
+    background: var(--lav);
+    color: var(--lav-ink);
+    display: grid;
+    place-items: center;
+  }
+  .brand .mark svg { width: 18px; height: 18px; }
+
+  .header .right { display: flex; align-items: center; gap: 12px; }
+  .who { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 13.5px; }
+  .who .av {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--lav);
+    color: var(--lav-ink);
+    display: grid;
+    place-items: center;
+  }
+  .who .av svg { width: 15px; height: 15px; }
+  .btn-out {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(23, 20, 42, 0.05);
+    transition: background 0.15s ease;
+  }
+  .btn-out:hover { background: #faf8fd; }
+  .btn-out svg { width: 15px; height: 15px; }
+
+  /* ---------- Layout ---------- */
+  .shell { display: flex; min-height: calc(100vh - 64px); }
+
+  .sidebar {
+    width: 232px;
+    flex: none;
+    padding: 18px 14px;
+    border-right: 1px solid var(--line);
+    background: #fff;
+  }
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    margin-bottom: 4px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2b2740;
+    transition: background 0.15s ease;
+  }
+  .sidebar a:hover { background: #f6f2fd; }
+  .sidebar a.active { background: var(--lav); color: var(--lav-ink); font-weight: 600; }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(20, 14, 32, 0.4); z-index: 25; }
+
+  .main {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 36px 48px;
+    position: relative;
+    background:
+      radial-gradient(260px 200px at 96% 0%, rgba(214, 190, 250, 0.35), rgba(214, 190, 250, 0) 70%),
+      radial-gradient(260px 240px at 0% 55%, rgba(236, 170, 170, 0.22), rgba(236, 170, 170, 0) 70%);
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  .hello { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hello h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.8px; }
+  .hello .name {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    padding: 0 14px;
+    border-radius: 12px;
+    background: var(--lav-soft);
+    color: #3b2a72;
+    border: 1px solid #e3d8f8;
+  }
+  .sub { margin-top: 10px; color: var(--muted); font-size: 14.5px; }
+
+  .stats {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 6px 18px rgba(60, 40, 110, 0.07);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+  }
+  .stat .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; }
+  .stat .label { font-size: 13.5px; font-weight: 500; color: #3a3650; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .pill svg { width: 13px; height: 13px; }
+  .pill.green { background: var(--green-bg); color: var(--green-ink); }
+  .pill.lav { background: #eadff9; color: #4b2f8a; }
+  .ico {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--lav);
+    color: #4b3a78;
+    display: grid;
+    place-items: center;
+  }
+  .ico svg { width: 15px; height: 15px; }
+
+  .stat .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 14px; }
+  .stat .num { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+  .stat .cap { font-size: 11.5px; color: var(--muted); font-weight: 500; text-align: right; }
+  .stat .num.big { font-size: 34px; }
+  .stat .cap.left { text-align: left; max-width: 70px; line-height: 1.25; margin-left: 4px; }
+
+  .panel {
+    margin-top: 22px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 22px 20px 20px;
+    box-shadow: 0 6px 18px rgba(60, 40, 110, 0.07);
+  }
+  .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .panel-head h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
+  .panel-head span { font-size: 12px; font-weight: 500; color: #3a3650; }
+  .panel-head a { font-size: 12.5px; font-weight: 600; color: #8a3b4a; }
+  .panel-head a:hover { text-decoration: underline; }
+
+  .quick {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px;
+    background: var(--tile);
+    border-radius: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(120, 70, 150, 0.12); }
+  .tile .sq {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .tile .sq svg { width: 20px; height: 20px; }
+  .sq.lav { background: #d9ccf7; color: #4b2f8a; }
+  .sq.rose { background: var(--rose); color: var(--rose-ink); }
+  .tile b { display: block; font-size: 15px; font-weight: 700; }
+  .tile small { display: block; margin-top: 1px; font-size: 12px; color: var(--muted); }
+
+  .activity { list-style: none; }
+  .activity li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .activity li:last-child { border-bottom: 0; padding-bottom: 2px; }
+  .activity .dot {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .activity .dot svg { width: 16px; height: 16px; }
+  .dot.lav { background: #e3d6fb; color: #4b2f8a; }
+  .dot.rose { background: var(--rose); color: var(--rose-ink); }
+  .dot.green { background: var(--green-bg); color: var(--green-ink); }
+  .activity p { flex: 1; font-size: 14px; font-weight: 500; }
+  .activity time { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  @media (max-width: 1100px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .sidebar {
+      position: fixed;
+      top: 64px; bottom: 0; left: 0;
+      z-index: 28;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease;
+    }
+    .sidebar.open { transform: none; }
+    .overlay.show { display: block; }
+    .menu-btn { display: block; }
+    .header { padding: 0 16px; }
+    .main { padding: 22px 16px 40px; }
+    .quick { grid-template-columns: repeat(2, 1fr); }
+    .hello h1, .hello .name { font-size: 28px; }
+  }
+  @media (max-width: 560px) {
+    .stats, .quick { grid-template-columns: 1fr; }
+    .who span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="1.5"/><path d="M7 8v3M11 8v4M15 8v3"/></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M10 13h4"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 12v8h14v-8M10 20v-4h4v4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.5-3.3 3-5 6-5s5.5 1.7 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.2c2.3.1 3.7 1.6 4 4.3"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c.6-3.6 3.6-5.5 7.5-5.5s6.9 1.9 7.5 5.5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H5v16h5M15 8l4 4-4 4M19 12H9"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+  </defs>
+</svg>
+
+<header class="header">
+  <div class="left">
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu"><svg class="i"><use href="#i-menu"/></svg></button>
+    <div class="brand">
+      <span class="mark"><svg class="i"><use href="#i-layers"/></svg></span>
+      Fasilita
+    </div>
+  </div>
+  <div class="right">
+    <div class="who">
+      <span class="av"><svg class="i"><use href="#i-user"/></svg></span>
+      <span>admin</span>
+    </div>
+    <button class="btn-out" type="button"><svg class="i"><use href="#i-logout"/></svg>Keluar</button>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="Menu utama">
+    <a href="#" class="active"><svg class="i"><use href="#i-grid"/></svg>Dashboard</a>
+    <a href="#"><svg class="i"><use href="#i-ruler"/></svg>Satuan</a>
+    <a href="#"><svg class="i"><use href="#i-archive"/></svg>Barang</a>
+    <a href="#"><svg class="i"><use href="#i-store"/></svg>Vendor</a>
+    <a href="#"><svg class="i"><use href="#i-users"/></svg>User</a>
+    <a href="#"><svg class="i"><use href="#i-shield"/></svg>Role</a>
+    <a href="#"><svg class="i"><use href="#i-percent"/></svg>Margin Penjualan</a>
+  </nav>
+  <div class="overlay" id="overlay"></div>
+
+  <main class="main">
+    <div class="wrap">
+      <div class="hello">
+        <h1>Halo,</h1>
+        <span class="name" id="namaUser">Admin</span>
+      </div>
+      <p class="sub">Selamat datang kembali! Pantau ringkasan data master Fasilita.</p>
+
+      <section class="stats" aria-label="Ringkasan">
+        <article class="stat">
+          <div class="top">
+            <span class="label">Barang Aktif</span>
+            <span class="pill green"><svg class="i"><use href="#i-check"/></svg>Tersedia</span>
+          </div>
+          <div class="bottom">
+            <span class="num" id="jmlBarang">5</span>
+            <span class="cap">Total SKU</span>
+          </div>
+        </article>
+
+        <article class="stat">
+          <div class="top">
+            <span class="label">Vendor</span>
+            <span class="ico"><svg class="i"><use href="#i-truck"/></svg></span>
+          </div>
+          <div class="bottom">
+            <span class="num" id="jmlVendor">5</span>
+            <span class="cap">Mitra Terdaftar</span>
+          </div>
+        </article>
+
+        <article class="stat">
+          <div class="top">
+            <span class="label">User</span>
+            <span class="ico"><svg class="i"><use href="#i-users"/></svg></span>
+          </div>
+          <div class="bottom">
+            <span class="num" id="jmlUser">5</span>
+            <span class="cap">Akun Aktif</span>
+          </div>
+        </article>
+
+        <article class="stat">
+          <div class="top">
+            <span class="label">Margin Aktif</span>
+            <span class="pill lav">Standar</span>
+          </div>
+          <div class="bottom">
+            <span class="num big"><span id="marginAktif">10</span>%</span>
+            <span class="cap left">Persentase Laba</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Akses cepat -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Akses Cepat</h2>
+          <span>Pilih menu navigasi utama</span>
+        </div>
+        <div class="quick">
+          <a href="#" class="tile">
+            <span class="sq lav"><svg class="i"><use href="#i-ruler"/></svg></span>
+            <span><b>Satuan</b><small>Kelola unit satuan barang</small></span>
+          </a>
+          <a href="#" class="tile">
+            <span class="sq rose"><svg class="i"><use href="#i-archive"/></svg></span>
+            <span><b>Barang</b><small>Katalog barang &amp; harga</small></span>
+          </a>
+          <a href="#" class="tile">
+            <span class="sq lav"><svg class="i"><use href="#i-store"/></svg></span>
+            <span><b>Vendor</b><small>Pemasok &amp; mitra</small></span>
+          </a>
+          <a href="#" class="tile">
+            <span class="sq rose"><svg class="i"><use href="#i-user"/></svg></span>
+            <span><b>User</b><small>Pengguna &amp; akun login</small></span>
+          </a>
+          <a href="#" class="tile">
+            <span class="sq lav"><svg class="i"><use href="#i-shield"/></svg></span>
+            <span><b>Role</b><small>Tingkat hak akses</small></span>
+          </a>
+          <a href="#" class="tile">
+            <span class="sq rose"><svg class="i"><use href="#i-percent"/></svg></span>
+            <span><b>Margin Penjualan</b><small>Konfigurasi persentase</small></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Aktivitas terkini (contoh statis, belum ada tabel log di database) -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Aktivitas Terkini</h2>
+          <a href="#">Lihat Riwayat Lengkap</a>
+        </div>
+        <ul class="activity">
+          <li>
+            <span class="dot lav"><svg class="i"><use href="#i-pencil"/></svg></span>
+            <p>Pembaruan margin penjualan standar ke 10%</p>
+            <time>10 mnt lalu</time>
+          </li>
+          <li>
+            <span class="dot rose"><svg class="i"><use href="#i-plus"/></svg></span>
+            <p>Penambahan 1 item barang baru ke inventaris</p>
+            <time>42 mnt lalu</time>
+          </li>
+          <li>
+            <span class="dot green"><svg class="i"><use href="#i-swap"/></svg></span>
+            <p>Verifikasi master data vendor selesai</p>
+            <time>2 jam lalu</time>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+  const data = { barang: 5, vendor: 5, user: 5, margin: 10, nama: 'Admin' };
+
+  document.getElementById('jmlBarang').textContent = data.barang;
+  document.getElementById('jmlVendor').textContent = data.vendor;
+  document.getElementById('jmlUser').textContent = data.user;
+  document.getElementById('marginAktif').textContent = data.margin;
+  document.getElementById('namaUser').textContent = data.nama;
+
+  // Sidebar mobile
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const toggleMenu = (open) => {
+    sidebar.classList.toggle('open', open);
+    overlay.classList.toggle('show', open);
+  };
+  document.getElementById('menuBtn').addEventListener('click', () => toggleMenu(true));
+  overlay.addEventListener('click', () => toggleMenu(false));
+</script>
+</body>
+</html>
